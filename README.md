@@ -34,3 +34,10 @@ To push your first commit
 git push -u origin [your-name/branch-name]
 ```
 every time you push after you only need to do `git push`
+
+
+
+# CMU Graphics Installer
+https://academy.cs.cmu.edu/desktop
+
+
