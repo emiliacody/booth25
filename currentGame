@@ -16,7 +16,7 @@ class Wonka:
         self.app = app
         self.cellSize = self.getCellSize()
         self.x = app.width/2 - 250 + self.cellSize / 2
-        self.y = app.height/2 - 250 + self.cellSize / 2
+        self.y = app.height/2 - 450 + self.cellSize / 2
         self.lives = 5
         self.dead = False
         self.overlapped = False
@@ -46,7 +46,7 @@ class Wonka:
     def draw(self):
         # Draw Wonka with some whimsical animation
         wobble = 2 * math.sin(self.app.colorTimer/5)
-        drawImage(self.image, self.x-20, self.y-60 + wobble, width=40, height=40)
+        drawImage(self.image, self.x-20, self.y-5 + wobble, width=40, height=40)
         
         # Draw a colorful hat or coat effect
         drawRect(self.x-20, self.y-85 + wobble, 40, 10, fill='purple', 
@@ -436,14 +436,15 @@ def onAppStart(app):
     app.candyParticles = []
     app.showSplashText = False
     app.splashTextTimer = 0
-    app.wonkaQuotes = [
-        "A little nonsense now and then is relished by the wisest men.",
-        "We are the music makers, and we are the dreamers of dreams.",
-        "So much time and so little to do. Wait a minute. Strike that. Reverse it.",
-        "Invention, my dear friends, is 93% perspiration, 6% electricity, 4% evaporation, and 2% butterscotch ripple.",
-        "The suspense is terrible... I hope it'll last!"
-    ]
-    app.currentQuote = random.choice(app.wonkaQuotes)
+    
+  #  app.wonkaQuotes = [
+  #      "A little nonsense now and then is relished by the wisest men.",
+  #      "We are the music makers, and we are the dreamers of dreams.",
+  #     "So much time and so little to do. Wait a minute. Strike that. Reverse it.",
+  #      "Invention, my dear friends, is 93% perspiration, 6% electricity, 4% evaporation, and 2% butterscotch ripple.",
+ #       "The suspense is terrible... I hope it'll last!"
+#  ]
+  #  app.currentQuote = random.choice(app.wonkaQuotes)
     app.quoteTimer = 0
     
 #### OOMPA LOOMPA ENEMY (Previously Bagpipe) #####
@@ -611,8 +612,8 @@ def drawWonkaEffects(app):
     if app.begin and app.quoteTimer < 150:
         drawRect(app.width/2, 250, app.width*0.7, 80, 
                  fill='purple', opacity=0.8, align='center')
-        drawLabel(app.currentQuote, app.width/2, 250, size=20, 
-                  font='cursive', fill='white', bold=True)
+        #drawLabel(app.currentQuote, app.width/2, 250, size=20, 
+         #         font='cursive', fill='white', bold=True)
 
 
 
@@ -637,13 +638,13 @@ def drawSplashText(app):
             drawStar(x, y, 15, 5, fill=colors[i % len(colors)])
             
         # Draw the text with a slight wobble
-        wobble = 2 * math.sin(app.splashTextTimer/5)
-        phrases = ["Pure Imagination!", "Golden Ticket Found!", 
-                   "Scrumdiddlyumptious!", "Candy Bonanza!", "Wonka Magic!"]
+    #    wobble = 2 * math.sin(app.splashTextTimer/5)
+    #    phrases = ["Pure Imagination!", "Golden Ticket Found!", 
+    #               "Scrumdiddlyumptious!", "Candy Bonanza!", "Wonka Magic!"]
         
-        phrase = phrases[app.splashTextTimer % len(phrases)]
-        drawLabel(phrase, app.width/2 + wobble, app.height/2 - 100 + wobble, 
-                  size=40, font='cursive', fill='white', bold=True)
+       # phrase = phrases[app.splashTextTimer % len(phrases)]
+        #drawLabel(phrase, app.width/2 + wobble, app.height/2 - 100 + wobble, 
+        #          size=40, font='cursive', fill='white', bold=True)
 
 def drawGraph(graph):
     for parent in graph:
@@ -758,7 +759,7 @@ def onKeyPress(app, key):
         app.wonka.updateCoords()
         app.gameMode = 'Start'
         app.quoteTimer = 0
-        app.currentQuote = random.choice(app.wonkaQuotes)
+     #   app.currentQuote = random.choice(app.wonkaQuotes)
         return
 
     # Original movement controls
@@ -795,7 +796,7 @@ def onKeyPress(app, key):
     # Reset game when 'r' is pressed
     if key == 'r':
         onAppStart(app)
-    
+   
     # Change background color with 'c' key
     if key == 'c':
         app.background = random.choice(app.backgroundColors)
@@ -814,7 +815,7 @@ def onMousePress(app, mouseX, mouseY):
         app.wonka.updateCoords()
         app.gameMode = 'Start'
         app.quoteTimer = 0
-        app.currentQuote = random.choice(app.wonkaQuotes)
+    #    app.currentQuote = random.choice(app.wonkaQuotes)
 
 def onStep(app):
     # Update animation timers and effects
@@ -825,11 +826,11 @@ def onStep(app):
         app.background = random.choice(app.backgroundColors)
     
     # Update quote timer
-    if app.begin:
-        app.quoteTimer += 1
-        if app.quoteTimer > 300:  # Change quote every 10 seconds (at 30fps)
-            app.currentQuote = random.choice(app.wonkaQuotes)
-            app.quoteTimer = 0
+  #  if app.begin:
+   #     app.quoteTimer += 1
+  #      if app.quoteTimer > 300:  # Change quote every 10 seconds (at 30fps)
+   #         app.currentQuote = random.choice(app.wonkaQuotes)
+    #        app.quoteTimer = 0
     
     # Create and update visual effects
     createChocolateDrop(app)
@@ -881,6 +882,10 @@ def main():
 main()
 
 cmu_graphics.run()
+
+
+
+
 
 
 
