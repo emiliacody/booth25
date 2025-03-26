@@ -381,6 +381,7 @@ def convertCoordsToNode(self, x, y):
 
 # onAppStart initializes values every time the game restarts
 def onAppStart(app):
+    app.setMaxShapeCount(50000)  # or whatever number you need
     app.width = 1500
     app.height = 900
     app.rows = 8
@@ -405,7 +406,7 @@ def onAppStart(app):
     app.candy = Candy(app)  # Renamed from Treat to Candy
     app.goldenTicket = GoldenTicket(app)  # Renamed from Powerup to GoldenTicket
     # Vibrant Wonka background colors
-    app.backgroundColors = ['pink', 'lightblue', 'yellow', 'lightgreen', 'lavender']
+    app.backgroundColors = ['lightpink', 'lightblue', 'orange', 'lightgreen', 'lavender']
     app.background = random.choice(app.backgroundColors)
     app.candyList = [[True,True,True,True,True,True, True, True],
                      [True,True,True,True,True,True, True, True],
@@ -882,10 +883,6 @@ def main():
 main()
 
 cmu_graphics.run()
-
-
-
-
 
 
 
